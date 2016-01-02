@@ -1,0 +1,5 @@
+{% load staticfiles %}
+
+<a href="{% url 'serp:'|add:model_name|add:'-create' %}">
+	<img src="{% static 'serp/add.png' %}" alt="Crear" height="16" width="16" />
+</a>

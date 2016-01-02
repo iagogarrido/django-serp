@@ -1,0 +1,100 @@
+/* Atributos globales */
+body {
+    font-family: Ubuntu,Helvetica,serif;
+}
+
+/* Encabezado */
+h1 {
+	text-align: center;
+	color: white;
+}
+
+#header {
+	background-color: darkorange;
+}
+
+#header a:link {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+#header a:visited {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+/* Menú para ir a las distintas secciones */
+#menu {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#menu td {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* Contenido de la página */
+#content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 3em;
+}
+
+/* Tabla de listado para un modelo */
+table.listModel {
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%
+}
+
+table.listModel th {
+    text-align: left;
+}
+
+table.listModel td {
+	border: 1px solid black;
+}
+
+table.listModel td.noBorder {
+	border-style: none;
+	width: 16px;
+}
+
+table.summary {
+	border-collapse: collapse;
+    margin-left: auto;
+    width: 50%
+}
+
+table.summary th {
+    text-align: left;
+}
+
+table.summary td {
+	border: 1px solid black;
+}
+
+/* Entrada para la edición de los campos de un modelo */
+.inputBlock input {
+    position: absolute;
+    left: 40%;
+    width: 35%;
+}
+
+.inputBlock select {
+    position: absolute;
+    left: 40%;
+}
+
+/* Pide de página, validación */
+#validation {
+    position: fixed;
+    bottom: 15px;
+}

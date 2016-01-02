@@ -1,0 +1,6 @@
+<form action="" method="post">
+	{% csrf_token %}
+    <p>¿Desea borrar a la persona "{{ object }}"?</p>
+    <a href="{% url 'serp:'|add:model_name|add:'-list' %}">Cancelar</a>
+    <input type="submit" value="Proceder" />
+</form>

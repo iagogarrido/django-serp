@@ -1,0 +1,5 @@
+{% load staticfiles %}
+
+<a href="{% url 'serp:'|add:model_name|add:'-update' pk=pk %}">
+	<img src="{% static 'serp/edit.png' %}" alt="Actualizar" height="16" width="16" />
+</a>

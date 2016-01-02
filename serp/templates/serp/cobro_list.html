@@ -1,0 +1,39 @@
+{% extends "serp/base.html" %}
+
+{% block title %}CONTABILIDAD - Cobros{% endblock title %}
+
+{% block content %}
+<h2>Cobros {% include 'serp/snippets/create.html' with model_name='cobro' %}</h2>
+
+<table class="listModel">
+	<tr>
+		<th>Referencia</th>
+        <th>Nombre</th>
+		<th>Nif</th>
+		<th>Concepto</th>
+		<th>Fecha</th>
+		<th>Tipo</th>
+		<th>Total</th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for cobro in object_list %}
+	<tr>
+		<td>{{ cobro.referencia }}</td>
+        <td>{{ cobro.persona.nombre }}</td>
+        <td>{{ cobro.persona.nif }}</td>
+		<td>{{ cobro.concepto }}</td>
+		<td>{{ cobro.fecha }}</td>
+		<td>{{ cobro.tipo }}</td>
+		<td>{{ cobro.total }}</td>
+		<td class="noBorder">{% include 'serp/snippets/update.html' with model_name='cobro' pk=cobro.id %}</td>
+		<td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='cobro' pk=cobro.id %}</td>
+	</tr>
+	{% endfor %}
+</table>
+<br />
+<table class="summary">
+    <tr><th>Total base imp.</th><th>Diferencia base imp.</th><th>Total IVA</th><th>Total</th></tr>
+    <tr><td>{{ total_base_imp }}</td><td>{{ diferencia_base_imp }}</td><td>{{ total_iva }}</td><td id="num">{{ total }}</td></tr>
+</table>
+{% endblock %}
