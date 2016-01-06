@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^cobros/create/$', views.CobroCreateView.as_view(), name='cobro-create'),
     url(r'^cobros/(?P<pk>[0-9]+)/$', views.CobroUpdateView.as_view(), name='cobro-update'),
     url(r'^cobros/(?P<pk>[0-9]+)/delete$', views.CobroDeleteView.as_view(), name='cobro-delete'),
+    url(r'^sepa_xml/$', views.SepaXmlView.as_view(), name='sepa-xml'),
 ]

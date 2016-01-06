@@ -1,9 +1,11 @@
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.base import TemplateView
+from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from . import sepa
 from .models import Persona, Cobro
+
 
 # Create your views here.
 
@@ -42,12 +44,16 @@ class PersonaDeleteView(DeleteView):
 
 class CobroListView(ListView):
     model = Cobro
+    allow_sepa = False
 
     def get_queryset(self):
         datos = super(self.__class__, self).get_queryset()
         tipo = self.request.GET.get('tipo')
 
         if tipo:
+            if tipo == 'I':
+                self.allow_sepa = True
+
             datos_filtro = datos.filter(tipo=tipo)
         else:
             datos_filtro = datos
@@ -77,6 +83,8 @@ class CobroListView(ListView):
         contexto['total_iva'] = total_iva
         contexto['total'] = total
 
+        contexto['allow_sepa'] = self.allow_sepa
+
         return contexto
 
 
@@ -93,3 +101,9 @@ class CobroUpdateView(UpdateView):
 class CobroDeleteView(DeleteView):
     model = Cobro
     success_url = reverse_lazy('serp:cobro-list')
+
+
+class SepaXmlView(View):
+    def get(self, request):
+        return sepa.generate_content(
+                {'count': Cobro.objects.filter(tipo='I').count()})
