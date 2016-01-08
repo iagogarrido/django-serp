@@ -26,11 +26,9 @@
         <td>{{ cobro.fecha }}</td>
         <td>{{ cobro.tipo }}</td>
         <td>{{ cobro.total }}</td>
-        <td class="noBorder">{% include 'serp/snippets/update.html' with
-            model_name='cobro' pk=cobro.id %}
+        <td class="noBorder">{% include 'serp/snippets/update.html' with model_name='cobro' pk=cobro.id %}
         </td>
-        <td class="noBorder">{% include 'serp/snippets/delete.html' with
-            model_name='cobro' pk=cobro.id %}
+        <td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='cobro' pk=cobro.id %}
         </td>
     </tr>
     {% endfor %}
