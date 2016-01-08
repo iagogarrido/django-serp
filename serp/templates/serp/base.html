@@ -21,6 +21,12 @@
                     <td><a href="{% url 'serp:cobro-list' %}?tipo=G">PAGOS</a></td>
                 </tr>
             </table>
+            <div id="settings">
+                <a href="{% url 'serp:empresa-update' pk=1 %}">
+                <img src="{% static 'serp/settings.png' %}"
+                     alt="Configuración" height="48" width="48"/>
+            </a>
+            </div>
         </div>
         <div id="content">
             {% block content %}{% endblock content %}

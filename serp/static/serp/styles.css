@@ -38,6 +38,12 @@ h1 {
 	padding-right: 20px;
 }
 
+#settings {
+    position: absolute;
+    top: 38px;
+    right: 20px;
+}
+
 /* Contenido de la página */
 #content {
     margin-left: auto;

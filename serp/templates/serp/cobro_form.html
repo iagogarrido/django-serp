@@ -3,11 +3,5 @@
 {% block title %}CONTABILIDAD - Cobro{% endblock title %}
 
 {% block content %}
-<form action="" method="post">
-	{% csrf_token %}
-    <div class="inputBlock">
-        {{ form.as_p }}
-    </div>
-    <input type="submit" value="Guardar" />
-</form>
+{% include 'serp/snippets/entity_form.html' %}
 {% endblock %}

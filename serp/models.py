@@ -8,12 +8,19 @@ TIPO_COBRO = (
     ('G', 'Gasto'),
 )
 
+TIPO_PRESENTADOR = (
+    ('PF', 'Persona física'),
+    ('PJ', 'Persona juridica'),
+)
+
 
 class Persona(models.Model):
     referencia = models.CharField(max_length=128)
     nombre = models.CharField(max_length=256)
     nif = models.CharField(max_length=10)
     email = models.CharField(max_length=256)
+    bic = models.CharField(max_length=11)
+    iban = models.CharField(max_length=34)
 
     def get_absolute_url(self):
         return reverse('serp:persona-update', args=(self.pk,))
@@ -44,3 +51,18 @@ class Cobro(models.Model):
 
     def __str__(self):
         return "[%s] %s (%s)" % (self.tipo, self.concepto, self.fecha)
+
+
+class Empresa(models.Model):
+    cod_pais = models.CharField(max_length=2)
+    tipo_presentador = models.CharField(max_length=2, choices=TIPO_PRESENTADOR)
+    nombre = models.CharField(max_length=256)
+    nif = models.CharField(max_length=10)
+    bic = models.CharField(max_length=11)
+    iban = models.CharField(max_length=34)
+
+    def get_absolute_url(self):
+        return reverse('serp:empresa-update', args=(self.pk,))
+
+    def __str__(self):
+        return self.nombre + " (" + self.nif + ")"

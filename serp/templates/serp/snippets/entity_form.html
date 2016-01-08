@@ -1,0 +1,7 @@
+<form action="" method="post">
+	{% csrf_token %}
+    <div class="inputBlock">
+        {{ form.as_p }}
+    </div>
+    <input type="submit" value="Guardar" />
+</form>
