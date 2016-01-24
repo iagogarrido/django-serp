@@ -13,7 +13,7 @@
 
 <div id="tipoSelec">
     <form method="get" action="{% url 'serp:cobro-list' %}">
-        <label for="tipo">Tipo</label>
+        <label for="tipo">Tipo:</label>
         <select id="tipo" name="tipo" onchange="this.form.submit()">
             <option value="" {% if tipo == '' %}selected="selected"{% endif %}>TODO</option>
             <option value="I" {% if tipo == 'I' %}selected="selected"{% endif %}>INGRESOS</option>
