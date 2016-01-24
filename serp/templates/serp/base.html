@@ -9,6 +9,7 @@
               href="{% static 'serp/styles.css' %}"/>
         <link rel="icon" type="image/x-icon"
               href="{% static 'serp/favicon.ico' %}"/>
+        {% block head %}{% endblock head %}
     </head>
     <body>
         <div id="header">
@@ -16,9 +17,7 @@
             <table id="menu">
                 <tr>
                     <td><a href="{% url 'serp:persona-list' %}">PERSONAS</a></td>
-                    <td><a href="{% url 'serp:cobro-list' %}">TODO</a></td>
-                    <td><a href="{% url 'serp:cobro-list' %}?tipo=I">INGRESOS</a></td>
-                    <td><a href="{% url 'serp:cobro-list' %}?tipo=G">PAGOS</a></td>
+                    <td><a href="{% url 'serp:cobro-list' %}">COBROS</a></td>
                     <td><a href="{% url 'serp:domiciliacion-list' %}?tipo=G">DOMICILIACIONES</a></td>
                 </tr>
             </table>

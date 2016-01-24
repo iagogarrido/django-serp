@@ -2,8 +2,25 @@
 
 {% block title %}CONTABILIDAD - Cobros{% endblock title %}
 
+{% block head %}
+<style>
+    #tipoSelec { margin: 1em 0 }
+</style>
+{% endblock head %}
+
 {% block content %}
 <h2>Cobros {% include 'serp/snippets/create.html' with model_name='cobro' %}</h2>
+
+<div id="tipoSelec">
+    <form method="get" action="{% url 'serp:cobro-list' %}">
+        <label for="tipo">Tipo</label>
+        <select id="tipo" name="tipo" onchange="this.form.submit()">
+            <option value="" {% if tipo == '' %}selected="selected"{% endif %}>TODO</option>
+            <option value="I" {% if tipo == 'I' %}selected="selected"{% endif %}>INGRESOS</option>
+            <option value="G" {% if tipo == 'G' %}selected="selected"{% endif %}>GASTOS</option>
+        </select>
+    </form>
+</div>
 
 <table class="listModel">
     <tr>
@@ -52,4 +69,4 @@
 <br/>
 <a href="{% url 'serp:sepa-xml' %}">SEPA</a>
 {% endif %}
-{% endblock %}
+{% endblock content %}

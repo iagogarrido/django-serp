@@ -54,16 +54,17 @@ class PersonaDeleteView(DeleteView):
 class CobroListView(ListView):
     model = models.Cobro
     allow_sepa = False
+    tipo = ""
 
     def get_queryset(self):
         datos = super(self.__class__, self).get_queryset()
-        tipo = self.request.GET.get('tipo')
+        self.tipo = self.request.GET.get('tipo')
 
-        if tipo:
-            if tipo == 'I':
+        if self.tipo:
+            if self.tipo == 'I':
                 self.allow_sepa = True
 
-            datos_filtro = datos.filter(tipo=tipo)
+            datos_filtro = datos.filter(tipo=self.tipo)
         else:
             datos_filtro = datos
 
@@ -93,6 +94,7 @@ class CobroListView(ListView):
         contexto['total'] = total
 
         contexto['allow_sepa'] = self.allow_sepa
+        contexto['tipo'] = self.tipo
 
         return contexto
 
