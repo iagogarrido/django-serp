@@ -7,20 +7,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from . import sepa
 from . import models
 
-
 # Create your views here.
 
 PERSONA_FIELDS = [
-    'referencia', 'nombre', 'nif', 'email', 'bic', 'iban'
+    'referencia', 'nombre', 'nif', 'direccion', 'codpostal', 'poblacion', 'provincia', 'email', 'bic', 'iban'
 ]
 
 COBRO_FIELDS = [
-    'persona', 'referencia', 'concepto', 'fecha', 'tipo', 'base_imponible',
-    'iva'
+    'persona', 'referencia', 'concepto', 'fecha', 'tipo', 'base_imponible', 'iva'
 ]
 
 EMPRESA_FIELDS = [
-    'cod_pais', 'tipo_presentador', 'nombre', 'nif', 'bic', 'iban'
+    'cod_pais', 'tipo_presentador', 'nombre', 'nif', 'direccion', 'codpostal', 'poblacion', 'provincia', 'bic', 'iban'
+]
+
+DOMICILIACION_FIELDS = [
+    'referencia', 'fecha_firma', 'recurrente', 'cdtr_nif', 'cdtr_nombre', 'cdtr_direccion', 'cdtr_codpostal',
+    'cdtr_poblacion', 'cdtr_provincia', 'cdtr_pais', 'dbtr_nif', 'dbtr_nombre', 'dbtr_direccion', 'dbtr_codpostal',
+    'dbtr_poblacion', 'dbtr_provincia', 'dbtr_bic', 'dbtr_iban'
 ]
 
 
@@ -132,3 +136,22 @@ class EmpresaUpdateView(UpdateView):
             empresa.save()
 
         return models.Empresa.objects.all()
+
+
+class DomiciliacionListView(ListView):
+    model = models.Domiciliacion
+
+
+class DomiciliacionCreateView(CreateView):
+    model = models.Domiciliacion
+    fields = DOMICILIACION_FIELDS
+
+
+class DomiciliacionUpdateView(UpdateView):
+    model = models.Domiciliacion
+    fields = DOMICILIACION_FIELDS
+
+
+class DomiciliacionDeleteView(DeleteView):
+    model = models.Domiciliacion
+    success_url = reverse_lazy('serp:domiciliacion-list')

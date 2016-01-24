@@ -50,6 +50,8 @@ h1 {
     margin-right: auto;
     width: 80%;
     margin-top: 3em;
+    margin-bottom: 6em;
+    min-width: 840px;
 }
 
 /* Tabla de listado para un modelo */
@@ -88,10 +90,19 @@ table.summary td {
 }
 
 /* Entrada para la edición de los campos de un modelo */
-.inputBlock input {
+.inputBlock {
+    margin-bottom: 2em;
+}
+
+.inputBlock input[type="text"] {
     position: absolute;
     left: 40%;
     width: 35%;
+}
+
+.inputBlock input[type="checkbox"] {
+    position: absolute;
+    left: 40%;
 }
 
 .inputBlock select {
@@ -99,7 +110,14 @@ table.summary td {
     left: 40%;
 }
 
-/* Pide de página, validación */
+/* Errores en la validación de los formularios */
+.errorlist {
+    margin: 0px;
+    left: 75%;
+    position: absolute;
+}
+
+/* Pie de página, validación */
 #validation {
     position: fixed;
     bottom: 15px;

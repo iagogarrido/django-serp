@@ -14,4 +14,8 @@ urlpatterns = [
     url(r'^cobros/(?P<pk>[0-9]+)/delete$', views.CobroDeleteView.as_view(), name='cobro-delete'),
     url(r'^sepa_xml/$', views.SepaXmlView.as_view(), name='sepa-xml'),
     url(r'^empresas/(?P<pk>[0-9]+)/$', views.EmpresaUpdateView.as_view(), name='empresa-update'),
+    url(r'^domiciliaciones/$', views.DomiciliacionListView.as_view(), name='domiciliacion-list'),
+    url(r'^domiciliaciones/create/$', views.DomiciliacionCreateView.as_view(), name='domiciliacion-create'),
+    url(r'^domiciliaciones/(?P<pk>[0-9]+)/$', views.DomiciliacionUpdateView.as_view(), name='domiciliacion-update'),
+    url(r'^domiciliaciones/(?P<pk>[0-9]+)/delete$', views.DomiciliacionDeleteView.as_view(), name='domiciliacion-delete'),
 ]
