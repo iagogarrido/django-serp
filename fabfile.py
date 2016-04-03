@@ -1,4 +1,4 @@
-from fabric.api import local, cd, run, env as fabenv
+from fabric.api import local, cd, run, env as fabenv, sudo, prefix
 import sys
 
 
@@ -14,14 +14,12 @@ def env(action):
     if action == "init":
         print("Initalizing virtualenv...")
         local("virtualenv -p python3 env")
-        local("source env/bin/activate")
-        
-        print("Installing dependencies...")
-        local("pip install --upgrade pip")
-        local("pip install django")
-        local("pip install fabric3")
 
-        local("deactivate")
+        print("Installing dependencies...")
+        with prefix("source env/bin/activate"):
+            local("pip install --upgrade pip")
+            local("pip install django")
+            local("pip install fabric3")
     elif action == "check":
         if hasattr(sys, "real_prefix"):
             print("Checking virtual environment... OK")
@@ -55,4 +53,4 @@ def deploy():
     if env("check"):
         with cd(REMOTE_DIR_PATH):
             run("git pull")
-            run("sudo service httpd restart")
+            sudo("service httpd restart")
