@@ -1,0 +1,13 @@
+{% extends "serp/base.html" %}
+
+{% block title %}CONTABILIDAD - SEPA{% endblock title %}
+
+{% block content %}
+<form action="" method="post">
+	{% csrf_token %}
+    <div class="inputBlock">
+        {{ form.as_p }}
+    </div>
+    <input type="submit" value="Descargar XML" />
+</form>
+{% endblock %}

@@ -25,8 +25,6 @@
 <table class="listModel">
     <tr>
         <th>Referencia</th>
-        <th>Nombre</th>
-        <th>Nif</th>
         <th>Concepto</th>
         <th>Fecha</th>
         <th>Tipo</th>
@@ -37,12 +35,10 @@
     {% for cobro in object_list %}
     <tr>
         <td>{{ cobro.referencia }}</td>
-        <td>{{ cobro.persona.nombre }}</td>
-        <td>{{ cobro.persona.nif }}</td>
         <td>{{ cobro.concepto }}</td>
         <td>{{ cobro.fecha }}</td>
         <td>{{ cobro.tipo }}</td>
-        <td>{{ cobro.total }}</td>
+        <td>{{ cobro.importe }}</td>
         <td class="noBorder">{% include 'serp/snippets/update.html' with model_name='cobro' pk=cobro.id %}
         </td>
         <td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='cobro' pk=cobro.id %}
@@ -65,8 +61,4 @@
         <td id="num">{{ total }}</td>
     </tr>
 </table>
-{% if allow_sepa %}
-<br/>
-<a href="{% url 'serp:sepa-xml' %}">SEPA</a>
-{% endif %}
 {% endblock content %}

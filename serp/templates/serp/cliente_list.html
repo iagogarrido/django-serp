@@ -1,0 +1,28 @@
+{% extends "serp/base.html" %}
+
+{% block title %}CONTABILIDAD - Clientes{% endblock title %}
+
+{% block content %}
+<h2>Clientes {% include 'serp/snippets/create.html' with model_name='cliente' %}</h2>
+
+<table class="listModel">
+	<tr>
+		<th>Referencia</th>
+		<th>Nombre</th>
+		<th>NIF</th>
+		<th>Email</th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for cliente in object_list %}
+	<tr>
+		<td>{{ cliente.referencia }}</td>
+		<td>{{ cliente.nombre }}</td>
+		<td>{{ cliente.nif }}</td>
+		<td>{{ cliente.email }}</td>
+		<td class="noBorder">{% include 'serp/snippets/update.html' with model_name='cliente' pk=cliente.id %}</td>
+		<td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='cliente' pk=cliente.id %}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
