@@ -53,4 +53,5 @@ def deploy():
     if env("check"):
         with cd(REMOTE_DIR_PATH):
             run("git pull")
+            run("python manage.py collectstatic")
             sudo("service httpd restart")
