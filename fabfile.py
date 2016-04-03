@@ -1,5 +1,4 @@
 from fabric.api import local, cd, run, env as fabenv
-from subprocess import call
 import sys
 
 
@@ -9,7 +8,8 @@ REMOTE_DIR_PATH = "/var/www/django/mysite"
 
 fabenv.hosts = [REMOTE_HOST_NAME]
 fabenv.key_filename = REMOTE_KEY_PATH
-        
+
+
 def env(action):
     if action == "init":
         print("Initalizing virtualenv...")
@@ -31,10 +31,10 @@ def env(action):
             print("Execute source env/bin/activate before entering any command")
             return False
     # TODO: Check how I can do this
-    #elif action == "activate":
-    #    print("Activating virtualenv...")
-    #    local("env/bin/activate_this.py")
-    #    local("source env/bin/activate")
+    # elif action == "activate":
+    #     print("Activating virtualenv...")
+    #     local("env/bin/activate_this.py")
+    #     local("source env/bin/activate")
     else:
         print("Unknown action: " + action)
 
@@ -55,4 +55,4 @@ def deploy():
     if env("check"):
         with cd(REMOTE_DIR_PATH):
             run("git pull")
-
+            run("sudo service httpd restart")
