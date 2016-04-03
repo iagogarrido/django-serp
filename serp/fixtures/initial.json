@@ -1,0 +1,164 @@
+[
+{
+  "model": "serp.cliente",
+  "pk": 1,
+  "fields": {
+    "referencia": "C1",
+    "nombre": "Cliente 1",
+    "nif": "12345678",
+    "direccion": "",
+    "codpostal": "",
+    "poblacion": "",
+    "provincia": "",
+    "email": "cliente@prueba.es",
+    "bic": "CAGLESMXX",
+    "iban": "ES99208009876543212345"
+  }
+},
+{
+  "model": "serp.cliente",
+  "pk": 2,
+  "fields": {
+    "referencia": "C2",
+    "nombre": "Cliente 2",
+    "nif": "86543321",
+    "direccion": "",
+    "codpostal": "",
+    "poblacion": "",
+    "provincia": "",
+    "email": "cliente2@prueba.es",
+    "bic": "CAGLESMXX",
+    "iban": "ES99208067676767676767"
+  }
+},
+{
+  "model": "serp.cliente",
+  "pk": 3,
+  "fields": {
+    "referencia": "C3",
+    "nombre": "prueba validaciones",
+    "nif": "12345678Y",
+    "direccion": "direcci\u00f3n",
+    "codpostal": "98765",
+    "poblacion": "poblaci\u00f3n",
+    "provincia": "provincia",
+    "email": "adsf@ggg.com",
+    "bic": "CAGLESMMXXX",
+    "iban": "ES6612345678900987654321"
+  }
+},
+{
+  "model": "serp.empresa",
+  "pk": 1,
+  "fields": {
+    "cod_pais": "ES",
+    "tipo_presentador": "PF",
+    "nombre": "Persona Aut\u00f3noma",
+    "nif": "12345678X",
+    "direccion": "",
+    "codpostal": "",
+    "poblacion": "",
+    "provincia": "",
+    "pais": "",
+    "iban": "ES99208012345678909876",
+    "bic": "CAGLESMXX"
+  }
+},
+{
+  "model": "serp.domiciliacion",
+  "pk": 1,
+  "fields": {
+    "cliente": 3,
+    "referencia": "D786340894892048",
+    "fecha_firma": "2016-01-25",
+    "recurrente": false,
+    "cdtr_nif": "66666666X",
+    "cdtr_nombre": "Ursa X. Stout",
+    "cdtr_direccion": "Apdo.:377-1270 Ligula Calle",
+    "cdtr_codpostal": "51147",
+    "cdtr_poblacion": "A Coru\u00f1a",
+    "cdtr_provincia": "A Coru\u00f1a",
+    "cdtr_pais": "Espa\u00f1a",
+    "dbtr_nif": "77777777Y",
+    "dbtr_nombre": "Chastity F. Morton",
+    "dbtr_direccion": "Apdo.:704-2700 Lectus Carretera",
+    "dbtr_codpostal": "91252",
+    "dbtr_poblacion": "A Coru\u00f1a",
+    "dbtr_provincia": "A Coru\u00f1a",
+    "dbtr_bic": "CAGLESMXXX",
+    "dbtr_iban": "ES001230984756019284475"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 1,
+  "fields": {
+    "servicio": 0,
+    "referencia": "1",
+    "concepto": "Yogurlado",
+    "fecha": "2006-01-05",
+    "tipo": "I",
+    "importe": "100.00"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 2,
+  "fields": {
+    "servicio": 0,
+    "referencia": "2",
+    "concepto": "Mano de mono",
+    "fecha": "2006-04-23",
+    "tipo": "I",
+    "importe": "200.00"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 3,
+  "fields": {
+    "servicio": 0,
+    "referencia": "3",
+    "concepto": "Cuota puesto mercadillo",
+    "fecha": "2006-07-21",
+    "tipo": "G",
+    "importe": "230.00"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 4,
+  "fields": {
+    "servicio": 0,
+    "referencia": "5",
+    "concepto": "Desperfectos por tornado",
+    "fecha": "2006-11-09",
+    "tipo": "G",
+    "importe": "120.00"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 5,
+  "fields": {
+    "servicio": 0,
+    "referencia": "6",
+    "concepto": "Indemnizacion mano de mono",
+    "fecha": "2006-12-12",
+    "tipo": "G",
+    "importe": "50.00"
+  }
+},
+{
+  "model": "serp.cobro",
+  "pk": 6,
+  "fields": {
+    "servicio": 0,
+    "referencia": "7",
+    "concepto": "Alfombra voladora",
+    "fecha": "2006-12-22",
+    "tipo": "I",
+    "importe": "900.00"
+  }
+}
+]
