@@ -64,3 +64,4 @@ target/
 
 # Project excludes
 serp-website.pem
+db/
