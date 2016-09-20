@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseForbidden
-from django.views.generic.base import View, TemplateView
+from django.shortcuts import get_object_or_404
+from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, \
     FormView
@@ -22,7 +23,7 @@ COBRO_FIELDS = [
 
 EMPRESA_FIELDS = [
     'cod_pais', 'tipo_presentador', 'nombre', 'nif', 'direccion', 'codpostal',
-    'poblacion', 'provincia', 'bic', 'iban'
+    'poblacion', 'provincia', 'bic', 'iban', 'presentador'
 ]
 
 DOMICILIACION_FIELDS = [
@@ -32,10 +33,20 @@ DOMICILIACION_FIELDS = [
     'dbtr_poblacion', 'dbtr_provincia', 'dbtr_bic', 'dbtr_iban'
 ]
 
+SERVICIO_FIELDS = [
+    'cliente', 'fecha', 'descripcion', 'importe', 'periodicidad'
+]
+
+REMESA_FIELDS = [
+    'presentador', 'referencia', 'fecha'
+]
+
 
 class IndexView(TemplateView):
     template_name = 'serp/base.html'
 
+
+# ----- CLIENTES -----
 
 class ClienteListView(ListView):
     model = models.Cliente
@@ -55,6 +66,8 @@ class ClienteDeleteView(DeleteView):
     model = models.Cliente
     success_url = reverse_lazy('serp:cliente-list')
 
+
+# ----- COBRO -----
 
 class CobroListView(ListView):
     model = models.Cobro
@@ -121,6 +134,8 @@ class SepaXmlView(FormView):
                                      form.importe)
 
 
+# ----- EMPRESA -----
+
 class EmpresaUpdateView(UpdateView):
     model = models.Empresa
     fields = EMPRESA_FIELDS
@@ -141,6 +156,8 @@ class EmpresaUpdateView(UpdateView):
         return models.Empresa.objects.all()
 
 
+# ----- DOMICILIACION -----
+
 class DomiciliacionListView(ListView):
     model = models.Domiciliacion
 
@@ -158,3 +175,80 @@ class DomiciliacionUpdateView(UpdateView):
 class DomiciliacionDeleteView(DeleteView):
     model = models.Domiciliacion
     success_url = reverse_lazy('serp:domiciliacion-list')
+
+
+# ----- SERVICIO -----
+
+class ServicioListView(ListView):
+    model = models.Servicio
+    model_name = 'servicio'
+
+    def get_queryset(self):
+        pk_cliente = self.kwargs.get('pk_cliente')
+
+        if pk_cliente:
+            cliente = get_object_or_404(models.Cliente, pk=pk_cliente)
+            datos = self.model.objects.filter(cliente=cliente)
+        else:
+            datos = super(self.__class__, self).get_queryset()
+
+        return datos
+
+    def get_context_data(self, **kwargs):
+        pk_cliente = self.kwargs.get('pk_cliente')
+
+        if pk_cliente:
+            self.model_name = 'cliente-servicio'
+            self.pk_cliente = pk_cliente
+
+        kwargs['model_name'] = self.model_name
+
+        return super(self.__class__, self).get_context_data(**kwargs)
+
+
+class ServicioCreateView(CreateView):
+    model = models.Servicio
+    fields = SERVICIO_FIELDS
+
+    pk_refs_fields = [('pk_cliente', 'cliente')]
+
+    def get_context_data(self, **kwargs):
+        if 'pk_refs' not in kwargs:
+            for pk_ref, _ in self.pk_refs_fields:
+                if pk_ref in self.kwargs:
+                    kwargs[pk_ref] = self.kwargs[pk_ref]
+
+        return super(self.__class__, self).get_context_data(**kwargs)
+
+    def get_form(self, form_class=None):
+        form = super(self.__class__, self).get_form(form_class=form_class)
+
+        for pk_ref, field_ref in self.pk_refs_fields:
+            if pk_ref in self.kwargs:
+                if field_ref in form.fields:
+                    form.initial[field_ref] = self.kwargs[pk_ref]
+                    form.fields[field_ref].widget.attrs['disabled'] = True
+
+        return form
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST.copy()
+
+        for pk_ref, field_ref in self.pk_refs_fields:
+            if (pk_ref in kwargs) and (field_ref not in data):
+                data[field_ref] = str(kwargs[pk_ref])
+
+        request.POST = data
+
+        return super(self.__class__, self).post(request, *args, **kwargs)
+
+
+# ----- REMESA -----
+
+class RemesaListView(ListView):
+    model = models.Remesa
+
+
+class RemesaCreateView(CreateView):
+    model = models.Remesa
+    fields = REMESA_FIELDS

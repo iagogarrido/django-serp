@@ -55,6 +55,7 @@ class Empresa(models.Model):
     pais = models.CharField(max_length=30)
     iban = models.CharField("numero IBAN", max_length=34, validators=[validate_iban])
     bic = models.CharField("codigo BIC", max_length=11, validators=[validate_bic])
+    presentador = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('serp:empresa-update', args=(self.pk,))
@@ -124,5 +125,10 @@ class Cobro(models.Model):
 
 class Remesa(models.Model):
     cobros = models.ManyToManyField(Cobro)
+    presentador = models.ForeignKey(Empresa)
 
-    fecha = models.DateField("fecha")
+    referencia = models.CharField(max_length=35)
+    fecha = models.DateField()
+
+    def __str__(self):
+        return "%s (%s)" % (self.referencia, self.fecha)

@@ -1,12 +1,12 @@
 {% extends "serp/base.html" %}
 
-{% block title %}CONTABILIDAD - Clientes{% endblock title %}
+{% block title %}CONTABILIDAD - Servicios{% endblock title %}
 
 {% block content %}
-
+{% comment %}
 <div>
     <a class="btn" role="button" href="{% url 'serp:cliente-servicio-list' pk_cliente=cliente.pk %}">Servicios</a>
 </div>
-
+{% endcomment %}
 {% include 'serp/snippets/entity_form.html' %}
 {% endblock %}

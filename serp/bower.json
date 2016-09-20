@@ -1,0 +1,23 @@
+{
+  "name": "serp",
+  "homepage": "https://github.com/iagogarrido/django-serp",
+  "authors": [
+    "Iago Garrido <iago086@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "BSD",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/serp/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "bootstrap": "^3.3.6"
+  }
+}

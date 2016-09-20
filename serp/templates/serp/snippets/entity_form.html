@@ -1,7 +1,24 @@
-<form action="" method="post">
+{% load custom_fields %}
+
+{% if form %}
+<form role="form" class="form-horizontal" action="" method="post" >
 	{% csrf_token %}
-    <div class="inputBlock">
-        {{ form.as_p }}
+    {% for pk_key, pk_value in pk_refs.items %}
+    <input type="hidden" name="{{ pk_key }}" value="{{ pk_value }}" />
+    {% endfor %}
+    {% for field in form %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        {% render_field_label field class="control-label col-sm-3" %}
+        <div class="col-sm-9">
+            {% render_field field class="form-control" %}
+        </div>
+        {% for error in field.errors %}
+        <span class="small">{{ error }}</span>
+        {% endfor %}
     </div>
-    <input type="submit" value="Guardar" />
+    {% endfor %}
+    <div class="form-group text-right">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
 </form>
+{% endif %}

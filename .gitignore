@@ -65,3 +65,4 @@ target/
 # Project excludes
 serp-website.pem
 db/
+bower_components

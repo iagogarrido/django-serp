@@ -1,0 +1,28 @@
+{% extends "serp/base.html" %}
+
+{% block title %}CONTABILIDAD - Servicios{% endblock title %}
+
+{% block content %}
+<h2>SERVICIOS {% include 'serp/snippets/create.html' %}</h2>
+
+<table class="table">
+	<tr>
+		<th>Fecha</th>
+		<th>Descripción</th>
+		<th>Importe</th>
+		<th>Periodicidad</th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for servicio in object_list %}
+	<tr>
+		<td>{{ servicio.fecha }}</td>
+		<td>{{ servicio.descripcion }}</td>
+		<td>{{ servicio.importe }}</td>
+		<td>{{ servicio.periodicidad }}</td>
+		<td class="noBorder">{% include 'serp/snippets/update.html' with model_name='servicio' pk=servicio.id %}</td>
+		<td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='servicio' pk=servicio.id %}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

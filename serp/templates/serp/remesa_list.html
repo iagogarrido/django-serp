@@ -1,0 +1,26 @@
+{% extends "serp/base.html" %}
+
+{% block title %}CONTABILIDAD - Remesas{% endblock title %}
+
+{% block content %}
+<h2>REMESAS {% include 'serp/snippets/create.html' with model_name='remesa' %}</h2>
+
+<table class="table">
+	<tr>
+		<th>Referencia</th>
+		<th>Fecha</th>
+		<th>Presentador</th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for remesa in object_list %}
+	<tr>
+		<td>{{ remesa.referencia }}</td>
+		<td>{{ remesa.fecha }}</td>
+		<td>{{ remesa.presentador }}</td>
+		<td class="noBorder">{% include 'serp/snippets/update.html' with model_name='remesa' pk=remesa.id %}</td>
+		<td class="noBorder">{% include 'serp/snippets/delete.html' with model_name='remesa' pk=remesa.id %}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

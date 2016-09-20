@@ -1,5 +1,9 @@
 {% load staticfiles %}
 
+{% if view.pk_cliente %}
+<a href="{% url 'serp:'|add:model_name|add:'-create' pk_cliente=view.pk_cliente %}">
+{% else %}
 <a href="{% url 'serp:'|add:model_name|add:'-create' %}">
+{% endif %}
 	<img src="{% static 'serp/add.png' %}" alt="Crear" height="16" width="16" />
 </a>
